@@ -32,22 +32,21 @@ public class EchoThread implements Runnable
 			while(true)
 			{
 				String response = reader.readLine();
-
-				if(response == null ||
-				response.equalsIgnoreCase("fine")){
-					break;
-                        }
-                                
-                                if(response.equals("maiuscole on")){
-                                    System.out.println("ON");
-                                    mas=true;
-                                }
-					
-                                if(response.equals("maiuscole off")){
-                                    System.out.println("OFF");
-					mas=false;
-                                }
-				String output = "[" + clientIp + "] " + response;
+                            switch(response){
+                                case "null":
+                                            break;
+                                case "fine":
+                                            break;
+                                case "maiuscole on":
+                                            System.out.println("ON");
+                                            mas=true;
+                                            break;
+                                case "maiuscole off":
+                                            System.out.println("OFF");
+                                            mas=false;
+                                            break;
+                                default: 
+                                    String output = "[" + clientIp + "] " + response;
 				System.out.println(output);
                                 if(mas==false){
                                     writer.write(response + "\n");
@@ -56,6 +55,26 @@ public class EchoThread implements Runnable
                                 }
                                 
 				writer.flush();
+                                            
+                                    
+                            }
+				/*if(response == null ||
+				response.equalsIgnoreCase("fine")){
+					break;
+                        }
+                                
+                                if(response.equals("maiuscole on")){
+                                    System.out.println("ON");
+                                    mas=true;
+                                    break;
+                                }
+					
+                                if(response.equals("maiuscole off")){
+                                    System.out.println("OFF");
+					mas=false;
+                                        break;
+                                }*/
+				
 			}
 		}
 		catch(IOException ex)
